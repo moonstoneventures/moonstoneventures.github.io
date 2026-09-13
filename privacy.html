@@ -69,6 +69,48 @@
     vertical-align: top;
   }
   th { background: #f6f8fa; }
+  .table-scroll { overflow-x: auto; }
+  .cell-label { display: none; }
+  @media (max-width: 600px) {
+    .table-scroll { overflow-x: visible; }
+    .data-summary, .data-summary tbody { display: block; width: 100%; }
+    .data-summary thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .data-summary tbody tr {
+      display: block;
+      margin: 0 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .data-summary td {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 0;
+      overflow-wrap: anywhere;
+    }
+    .data-summary td + td { border-top: 1px solid var(--border); }
+    .data-summary td:first-child { background: #f6f8fa; }
+    .cell-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+  }
+
   footer {
     max-width: var(--max-width);
     margin: 40px auto 0;
@@ -91,11 +133,11 @@
 <body>
 <header>
   <h1>Privacy Policy</h1>
-  <p class="meta">Caveman Dan &middot; Effective date: August 1, 2026</p>
+  <p class="meta">Caveman Dan &middot; Effective date: September 12, 2026</p>
 </header>
 <main>
 
-<p>This Privacy Policy explains how Moonstone Internet Ventures LLC ("we," "us," or "our") handles information in connection with <strong>Caveman Dan</strong> (the "App"), a free hexa block puzzle game for iOS. By downloading or using the App, you agree to the practices described here.</p>
+<p>This Privacy Policy explains how Moonstone Internet Ventures LLC ("we," "us," or "our") handles information in connection with <strong>Caveman Dan</strong> (the "App"), a free hexa block puzzle game for iOS. Optional usage analytics and tracking each require the separate choices described below; downloading the App is not consent to either.</p>
 
 <div class="toc">
   <ol>
@@ -114,75 +156,82 @@
 </div>
 
 <h2 id="collect">1. What Information Is Collected</h2>
-<p>Caveman Dan has no account or login system and no user-generated content. We do not collect your name, email address, physical location, contacts, photos, or payment information. The App does not offer in-app purchases.</p>
-<p>The App does use third-party services (Google AdMob for advertising and Firebase Analytics) that collect limited technical data on their own behalf and ours, as summarized below. This mirrors the "data used to track you" and "data linked to you" categories disclosed in the App Store's Privacy Nutrition Label for Caveman Dan.</p>
-
-<table>
-  <tr><th>Data Type</th><th>Collected By</th><th>Purpose</th><th>Linked to You / Used for Tracking</th></tr>
-  <tr><td>Device identifier (e.g., IDFA, vendor ID)</td><td>Google AdMob</td><td>Third-party advertising, ad measurement</td><td>Yes — linked to user; used for tracking when permitted</td></tr>
-  <tr><td>Product interaction (gameplay events, app usage)</td><td>Firebase Analytics</td><td>Analytics, app performance and stability</td><td>No</td></tr>
-  <tr><td>Advertising data (ad impressions/clicks, coarse technical data)</td><td>Google AdMob</td><td>Third-party advertising</td><td>Yes — used for tracking when permitted</td></tr>
+<p>Caveman Dan has no account or login system, in-app chat, or user-generated-content feed. Saved game progress, preferences and local diagnostic counters are stored on your device. The App does not request your name, email address, contacts, photos, precise location or payment information to play, and it has no in-app purchases. If you email support, we receive your email address and the information you choose to send.</p>
+<p>The App uses Google AdMob and Google's User Messaging Platform (UMP) for advertising and applicable advertising choices. Separately, <strong>Share usage analytics</strong> in Settings is optional and <strong>off by default</strong>. If you enable it, Google Analytics for Firebase receives usage information to help improve the game. Approximate location can be derived from network information; this is different from accessing your precise location through iOS Location Services.</p>
+<div class="table-scroll" role="region" aria-label="Data collection summary" tabindex="0">
+<table class="data-summary" role="table" aria-label="Data collection summary">
+  <thead role="rowgroup">
+    <tr role="row"><th id="data-heading" scope="col" role="columnheader">Data</th><th id="service-heading" scope="col" role="columnheader">Service and purpose</th><th id="controls-heading" scope="col" role="columnheader">How it is associated and controlled</th></tr>
+  </thead>
+  <tbody role="rowgroup">
+    <tr role="row"><td headers="data-heading" role="cell"><span class="cell-label" aria-hidden="true">Data</span>Device and advertising identifiers; approximate location; product interactions and advertising data</td><td headers="service-heading" role="cell"><span class="cell-label" aria-hidden="true">Service and purpose</span>AdMob: ad delivery, advertising measurement and service analytics. UMP: applicable consent and privacy choices.</td><td headers="controls-heading" role="cell"><span class="cell-label" aria-hidden="true">Association and controls</span>Advertising information can be associated with a device. Tracking-based advertising requires ATT authorization and other applicable permissions. UMP choices can also permit limited or non-personalized ads.</td></tr>
+    <tr role="row"><td headers="data-heading" role="cell"><span class="cell-label" aria-hidden="true">Data</span>Crash, performance and other diagnostic information</td><td headers="service-heading" role="cell"><span class="cell-label" aria-hidden="true">Service and purpose</span>Google advertising/consent SDKs: operation, analytics and, where the SDK's applicable practices provide, advertising measurement.</td><td headers="controls-heading" role="cell"><span class="cell-label" aria-hidden="true">Association and controls</span>The SDKs describe these diagnostic categories as not linked to identity in their privacy declarations.</td></tr>
+    <tr role="row"><td headers="data-heading" role="cell"><span class="cell-label" aria-hidden="true">Data</span>Gameplay and session events, level outcomes, moves, garden/booster interactions, sharing activity, and ad performance/revenue events</td><td headers="service-heading" role="cell"><span class="cell-label" aria-hidden="true">Service and purpose</span>Firebase Analytics: optional usage measurement after you enable Share usage analytics.</td><td headers="controls-heading" role="cell"><span class="cell-label" aria-hidden="true">Association and controls</span>Events are associated with an app-instance identifier, so they are not described as anonymous. This app does not enable Analytics advertising personalization.</td></tr>
+    <tr role="row"><td headers="data-heading" role="cell"><span class="cell-label" aria-hidden="true">Data</span>App-instance identifier, app/device information and approximate location derived from IP information</td><td headers="service-heading" role="cell"><span class="cell-label" aria-hidden="true">Service and purpose</span>Firebase Analytics: optional usage measurement and service operation.</td><td headers="controls-heading" role="cell"><span class="cell-label" aria-hidden="true">Association and controls</span>The Analytics integration disables advertising-ID and vendor-ID collection. An app-instance identifier still allows events from an opted-in installation to be related.</td></tr>
+  </tbody>
 </table>
+</div>
+<p>Sharing metrics record actions such as opening a share sheet, completing or failing an activity, and taking a screenshot while a result is visible. They do not include screenshot files, recipients or message contents. A completed activity can be a local save and does not establish delivery to another person. When you choose a destination in the system share sheet, the generated image and accompanying text are provided to that chosen service under its own terms.</p>
 
 <h2 id="purposes">2. How Information Is Used</h2>
 <ul>
-  <li><strong>Displaying ads:</strong> Google AdMob serves banner, interstitial, and rewarded ads within the App. When permitted, AdMob may use your device's advertising identifier to personalize ads and measure ad performance.</li>
-  <li><strong>Understanding app usage:</strong> Firebase Analytics helps us understand how players interact with the game (e.g., levels played, session length, crashes) so we can improve it. This data is not used to identify you personally.</li>
-  <li><strong>Ad attribution:</strong> The App uses Apple's SKAdNetwork framework to measure the effectiveness of ad campaigns in a privacy-preserving way. SKAdNetwork identifiers for our advertising partners' networks (including Meta and Google) may be included in the App's configuration to enable this attribution without revealing user-level data to us.</li>
-  <li><strong>Game Center leaderboard:</strong> If you choose to participate in the App's daily leaderboard, this feature is provided and governed by Apple's Game Center. We do not receive or store your Game Center data — see Section 3.</li>
+  <li><strong>Displaying ads:</strong> AdMob serves banner, interstitial and optional rewarded ads. Ad requests depend on applicable advertising choices and availability. Declining tracking or optional Analytics does not block gameplay.</li>
+  <li><strong>Understanding app usage:</strong> After a separate Analytics opt-in, Firebase helps us measure sessions, game outcomes, interactions and ad performance so we can improve the game. Analytics advertising storage, advertising user-data use and ad personalization are disabled in this integration.</li>
+  <li><strong>Ad attribution:</strong> Apple's SKAdNetwork can measure advertising effectiveness. Network identifiers in the App's configuration do not themselves mean that the App operates a social account or sends your game progress to that network.</li>
+  <li><strong>Local progress:</strong> The current release keeps progress on the device. It does not provide an active Game Center leaderboard or cloud progress sync.</li>
+  <li><strong>Support:</strong> Information you voluntarily email is used to respond to your request.</li>
 </ul>
 
 <h2 id="third-party">3. Third-Party Services</h2>
-<p>Caveman Dan relies on the following third-party services, each of which processes data under its own privacy policy:</p>
+<p>Our active advertising and optional Analytics services are provided by Google. They process information under their applicable service terms and privacy practices:</p>
 <ul>
-  <li><strong>Google AdMob</strong> — serves in-app advertising and may collect device and advertising identifiers, general device information, and interaction data for ad delivery, personalization, and measurement.
-    <br>Google Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>
-    <br>AdMob data disclosure: <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">https://support.google.com/admob/answer/6128543</a>
+  <li><strong>Google AdMob and UMP</strong> — advertising delivery/measurement and applicable privacy choices.
+    <br><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>
+    <br><a href="https://developers.google.com/admob/ios/privacy/data-disclosure" target="_blank" rel="noopener">AdMob data disclosure</a>
   </li>
-  <li><strong>Firebase Analytics (Google)</strong> — collects app usage and product interaction data to help us understand how the App is used.
-    <br>Firebase data disclosure: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">https://firebase.google.com/support/privacy</a>
-  </li>
-  <li><strong>Apple Game Center</strong> — powers the App's daily leaderboard. Your interaction with Game Center (including your Game Center nickname and scores) is governed by Apple's own privacy and terms policies, not ours.
-    <br>Apple Privacy Policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">https://www.apple.com/legal/privacy/</a>
+  <li><strong>Google Analytics for Firebase</strong> — optional game-usage measurement.
+    <br><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and security in Firebase</a>
+    <br><a href="https://support.google.com/analytics/answer/10285841" target="_blank" rel="noopener">Analytics data disclosure</a>
   </li>
 </ul>
-<p>We do not sell your personal information, and we do not operate our own servers that store personal data collected from you — the data described above is processed by Google (AdMob/Firebase) and Apple (Game Center) under their respective policies.</p>
+<p>Our Analytics settings allow Google to use aggregated, de-identified measurement contributions for modeling and benchmarking, provide technical support when needed, and make business recommendations using account information. Firebase service-administration information may also be used to improve other Google services. These service settings do not turn on the App's optional usage Analytics or grant permission for Analytics advertising personalization.</p>
+<p>We do not operate a game account server. Using service providers does not remove our responsibility for the App's data practices or your privacy requests. We require providers handling information for us to protect it consistently with the applicable service agreements, this policy and applicable privacy requirements. The current release does not activate Meta app-event collection or a Game Center leaderboard.</p>
 
 <h2 id="att">4. App Tracking Transparency &amp; Advertising Identifiers</h2>
-<p>On iOS, Caveman Dan requests permission through Apple's App Tracking Transparency (ATT) framework before any tracking-related data (such as the IDFA — Identifier for Advertisers) is used. You will see a system prompt asking whether the App may track your activity across other companies' apps and websites.</p>
+<p>Apple's App Tracking Transparency (ATT) permission is separate from optional usage Analytics and regional advertising consent. Where eligible, the App offers an explanation before requesting the system tracking permission; it does not require tracking to play.</p>
 <ul>
-  <li>If you <strong>allow</strong> tracking, AdMob may use your device's IDFA to deliver more personalized ads and measure ad campaign performance.</li>
-  <li>If you <strong>decline</strong> tracking, the App will still display ads, but they will be less personalized (contextual, non-tracking-based advertising), and AdMob will not use the IDFA for tracking purposes.</li>
+  <li>If you <strong>allow</strong> tracking and other applicable permissions permit, AdMob may use the advertising identifier for personalized advertising and measurement.</li>
+  <li>If you <strong>decline</strong>, are restricted, or have not authorized tracking, this app requests non-personalized ads. This does not mean advertising SDKs collect no technical information.</li>
 </ul>
-<p>You can change your tracking preference at any time in <strong>iOS Settings &gt; Privacy &amp; Security &gt; Tracking</strong>, or under the specific app entry in that menu.</p>
+<p>You can change the tracking choice in <strong>iOS Settings &gt; Privacy &amp; Security &gt; Tracking</strong>. Where UMP requires an entry point, <strong>Privacy Options</strong> on the App's Home screen reopens advertising choices. The App refreshes its permission state and discards preloaded ads when these choices change.</p>
+<h3>Optional usage Analytics</h3>
+<p>Open the App's <strong>Settings &gt; Share usage analytics</strong> to enable or disable Firebase usage measurement. The setting starts off; agreeing to ATT or a UMP advertising form does not enable it. Turning it off stops app event forwarding and SDK Analytics collection and clears Analytics stored on this device. It does <strong>not</strong> delete information already sent to Google. Re-enabling starts a new local Analytics collection period; it does not upload the history of local QA counters. For previously sent information or other privacy requests, use the contact details below.</p>
 
 <h2 id="gdpr">5. GDPR / EEA &amp; UK Rights</h2>
-<p>If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, the General Data Protection Regulation (GDPR) and equivalent UK data protection law apply to certain processing described in this policy.</p>
-<h3>Legal Bases for Processing</h3>
-<ul>
-  <li><strong>Consent</strong> — for personalized advertising and tracking-related data uses (including IDFA-based tracking), we rely on your consent, collected through Google's User Messaging Platform (UMP) consent form shown to EEA/UK users, and through the ATT prompt on iOS.</li>
-  <li><strong>Legitimate interests</strong> — for basic app analytics and non-personalized advertising necessary to keep the free App running, we and our partners may rely on legitimate interests, balanced against your rights.</li>
-</ul>
-<h3>UMP Consent Message</h3>
-<p>Users in the EEA and UK are shown a consent message (via Google's UMP SDK) before any non-essential data processing for advertising purposes begins. You can review or withdraw your consent choices at any time by revisiting the consent form, where available in the App's settings, or by adjusting your device's ATT and ad tracking settings.</p>
-<h3>Your Rights</h3>
-<p>Subject to applicable law, you may have the right to: access the data held about you; request correction or deletion; object to or restrict certain processing; request data portability; and withdraw consent at any time without affecting prior lawful processing. Because we do not maintain user accounts and do not store personal data on our own servers, most of these requests are best directed to Google (as the processor of AdMob/Firebase data) or fulfilled by adjusting your device's tracking and consent settings. You may also contact us using the details in Section 11, and we will assist where we are able, and you have the right to lodge a complaint with your local data protection authority.</p>
+<p>If you are in the European Economic Area, the United Kingdom or Switzerland, applicable data-protection law can provide rights over your information.</p>
+<h3>Consent and advertising choices</h3>
+<p>Optional usage Analytics relies on your separate, default-off in-app choice. Where required, advertising consent is gathered through Google's UMP; ATT supplies Apple's additional tracking permission. The advertising form explains applicable purposes and choices. Technical processing needed to operate the consent service and any permitted limited advertising follows the applicable service practices and legal requirements; refusing personalized ads is not permission for unrelated Analytics.</p>
+<p>Where a UMP privacy-options entry point is required, use <strong>Home &gt; Privacy Options</strong> to revisit advertising choices. Use <strong>Settings &gt; Share usage analytics</strong> for optional Analytics. These controls have different purposes, and either can be changed without losing access to gameplay.</p>
+<h3>Your rights</h3>
+<p>Subject to applicable law, you may request access, correction, deletion, restriction, portability or objection to processing, and withdraw consent without affecting prior lawful processing. Contact us at the address below so we can review the request and coordinate with the relevant provider. We may need enough information to identify the applicable app installation or support correspondence; we do not require an in-game account. Disabling a setting does not by itself erase previously collected service records. You also have the right to contact your local data-protection authority.</p>
 
 <h2 id="ccpa">6. CCPA / CPRA (California) Rights</h2>
-<p>If you are a California resident, the California Consumer Privacy Act, as amended by the California Privacy Rights Act (CCPA/CPRA), gives you certain rights regarding personal information, including the right to know what categories of personal information are collected, the right to request deletion, the right to correct inaccurate information, and the right to opt out of the "sale" or "sharing" of personal information (including for cross-context behavioral advertising).</p>
-<p>We do not sell personal information for money. Ad personalization through AdMob may be considered "sharing" under CPRA. You can opt out by declining App Tracking Transparency permission on iOS and/or adjusting your device's "Limit Ad Tracking" / ad personalization settings, and via the consent tools referenced in Section 5. To exercise any CCPA/CPRA rights, contact us using the details in Section 11.</p>
+<p>If you are a California resident, applicable California privacy law may provide rights to know, access, correct or delete personal information and to opt out of its sale or sharing, including cross-context behavioral advertising.</p>
+<p>We do not sell personal information for money. Personalized advertising through AdMob may involve sharing as defined by California law. Use the App's <strong>Privacy Options</strong> entry point where required to revisit applicable advertising choices, and iOS Tracking settings for ATT. Optional Firebase usage measurement is separately controlled by <strong>Settings &gt; Share usage analytics</strong>. Contact us below to exercise applicable rights or ask for assistance. We do not restrict gameplay because you exercise a privacy choice.</p>
 
 <h2 id="retention">7. Data Retention</h2>
-<p>We do not operate servers that store your personal data. Information collected via Google AdMob and Firebase Analytics is retained and eventually deleted according to Google's own data retention practices and settings, as described in their privacy policy and product documentation linked in Section 3. Game Center data is retained by Apple according to Apple's own policies.</p>
+<p>Saved game progress and preferences remain on your device until removed through app/device controls or deletion of the App, subject to any device backups you maintain. Turning optional Analytics off clears its local Analytics data, not saved game progress.</p>
+<p>Our Google Analytics property is configured to retain event-level data for 2 months and user-level data for 14 months. New user activity resets the user-data retention period. These settings do not govern most standard reports based on aggregated data. Information collected by AdMob and UMP follows those services' applicable retention practices. We use those records for the purposes described above and review retention against those purposes and applicable requirements. Provider information is linked in Section 3. We do not promise that uninstalling the App, resetting local Analytics or changing ATT instantly deletes records already received by a provider.</p>
+<p>Contact us to request applicable access or deletion, including the game/device details relevant to your request. We will review it and coordinate with the relevant provider; service retention rules and lawful exceptions may affect what can be deleted. We retain support correspondence as needed to respond, resolve the issue and meet applicable recordkeeping requirements. Do not send passwords or advertising identifiers in an initial support email.</p>
 
 <h2 id="children">8. Children's Privacy</h2>
-<p>Caveman Dan is not directed at children under the age of 13, and the App's intended age rating is approximately 9+/12+. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided personal information through the App, please contact us at the email address below so we can address it, including coordinating removal where applicable. This App is not designed to comply with, and should not be treated as being directed toward, audiences requiring child-specific consent frameworks such as COPPA-covered services.</p>
+<p>Caveman Dan is intended for a general audience aged <strong>13 and older</strong> and is not directed to children under 13. App Store content ratings can be higher in some regions. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided information through the App, contact us below so we can investigate and coordinate appropriate deletion. An App Store rating is not a substitute for parental supervision or applicable child-privacy requirements.</p>
 
 <h2 id="transfers">9. International Data Transfers</h2>
-<p>Because the App relies on Google (AdMob, Firebase) and Apple (Game Center), data processed through these services may be transferred to, stored, and processed in the United States or other countries where those companies or their partners operate. Google and Apple maintain their own safeguards for international data transfers, including standard contractual clauses where applicable, as described in their respective privacy policies linked above.</p>
+<p>Google services and support email may process information in the United States or other countries. The relevant providers' terms and privacy information describe their transfer safeguards, including applicable contractual protections. Contact us if you need more information about processing related to your use of the App.</p>
 
 <h2 id="changes">10. Changes to This Policy</h2>
-<p>We may update this Privacy Policy from time to time to reflect changes in the App, our practices, or legal requirements. Material changes will be reflected by updating the "Effective date" at the top of this page. Continued use of the App after changes are posted constitutes acceptance of the revised policy.</p>
+<p>We may update this Privacy Policy from time to time to reflect changes in the App, our practices, or legal requirements. Material changes will be reflected by updating the "Effective date" at the top of this page. If a change requires a new consent choice, continued use alone does not provide that consent.</p>
 
 <h2 id="contact">11. Contact Us</h2>
 <p>If you have questions about this Privacy Policy or the App's data practices, contact us at:</p>
