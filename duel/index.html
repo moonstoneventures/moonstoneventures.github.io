@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-itunes-app" content="app-id=6797143229">
+<title>Caveman Dan — Friend Duel Challenge</title>
+<meta name="description" content="Play the exact same hex puzzle board and pieces to beat your friend's score in Caveman Dan on iOS.">
+<style>
+  :root {
+    --bg-top: #1b2845;
+    --bg-bottom: #0d1324;
+    --card: rgba(27, 38, 66, 0.92);
+    --gold: #f5b82e;
+    --gold-deep: #d98218;
+    --green: #38c972;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.72);
+    --border: rgba(245, 184, 46, 0.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 28px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(245, 184, 46, 0.16);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 14px 0 8px;
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 900;
+  }
+  .subtitle {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+  .code-box {
+    background: rgba(0, 0, 0, 0.34);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin: 0 0 20px;
+  }
+  .code-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .code-value {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gold);
+    word-break: break-all;
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 999px;
+    border: 0;
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: transform 0.12s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: linear-gradient(180deg, #4ce088 0%, var(--green) 100%);
+    color: #132117;
+    box-shadow: 0 10px 24px rgba(56, 201, 114, 0.35);
+  }
+  .btn-store {
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: #241705;
+  }
+  .btn-copy {
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 15px;
+    padding: 12px 18px;
+  }
+  .hint {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  footer {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  footer a { color: rgba(255, 255, 255, 0.72); text-decoration: none; }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="badge">⚔️ Friend Duel Challenge</div>
+  <h1 id="headline">Caveman Dan</h1>
+  <p class="subtitle" id="subtitle">Same hex board. Exact same pieces. Can you beat your friend's score?</p>
+
+  <div class="code-box" id="codeBox" hidden>
+    <div class="code-label">Challenge Code</div>
+    <div class="code-value" id="codeValue"></div>
+  </div>
+
+  <a class="btn btn-primary" id="openAppBtn" href="cavemandan://duel">Open in Caveman Dan</a>
+  <button class="btn btn-copy" id="copyBtn" type="button" hidden>Copy Challenge Code</button>
+  <a class="btn btn-store" id="storeBtn" href="https://apps.apple.com/app/id6797143229">Download on the App Store</a>
+
+  <p class="hint" id="hintText">Don't have Caveman Dan yet? Tap <strong>Copy Challenge Code</strong>, install free from the App Store, then tap <strong>⚔️ Duel Code</strong> on the Home screen.</p>
+
+  <footer>
+    &copy; 2026 Moonstone Internet Ventures LLC &middot;
+    <a href="/privacy.html">Privacy</a> &middot;
+    <a href="/support.html">Support</a>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var raw = (params.get("c") || "").trim().toUpperCase();
+  var valid = /^DAN-[A-Z0-9._-]+$/.test(raw) && raw.length <= 64;
+
+  var codeBox = document.getElementById("codeBox");
+  var codeValue = document.getElementById("codeValue");
+  var openAppBtn = document.getElementById("openAppBtn");
+  var copyBtn = document.getElementById("copyBtn");
+  var subtitle = document.getElementById("subtitle");
+
+  if (valid) {
+    codeBox.hidden = false;
+    copyBtn.hidden = false;
+    codeValue.textContent = raw;
+    openAppBtn.href = "cavemandan://duel?c=" + encodeURIComponent(raw);
+
+    var parts = raw.slice(4).split("-");
+    if (parts.length >= 2) {
+      var segs = parts[0].split(".");
+      var kind = segs[0];
+      if (kind === "C" || kind === "G") {
+        subtitle.textContent = "Classic Friend Duel — same board & exact same piece stream. Beat the target score!";
+      } else if (kind === "D") {
+        subtitle.textContent = "Daily Challenge Duel — collect the Golden Idols and beat your friend's score!";
+      } else if (kind === "A") {
+        var lvl = parseInt(segs[1], 36);
+        subtitle.textContent = !isNaN(lvl)
+          ? "Adventure Level " + lvl + " Duel — same board & pieces. Beat your friend's moves and score!"
+          : "Adventure Friend Duel — same board & exact same pieces!";
+      }
+    }
+
+    copyBtn.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(raw).then(function () {
+          copyBtn.textContent = "Copied! Paste in Caveman Dan";
+        }, function () {
+          copyBtn.textContent = "Code: " + raw;
+        });
+      } else {
+        copyBtn.textContent = "Code: " + raw;
+      }
+    });
+  } else {
+    openAppBtn.hidden = true;
+  }
+})();
+</script>
+</body>
+</html>

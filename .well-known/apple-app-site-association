@@ -1,0 +1,27 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8R8L5F7AM5.com.hutch.hexablast",
+        "appIDs": [
+          "8R8L5F7AM5.com.hutch.hexablast"
+        ],
+        "paths": [
+          "/duel",
+          "/duel/*"
+        ],
+        "components": [
+          {
+            "/": "/duel",
+            "comment": "Caveman Dan Friend Duel Universal Links"
+          },
+          {
+            "/": "/duel/*",
+            "comment": "Caveman Dan Friend Duel Universal Links (subpath)"
+          }
+        ]
+      }
+    ]
+  }
+}
